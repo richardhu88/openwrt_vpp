@@ -79,8 +79,8 @@ define KernelPackage/vfio
   TITLE:=VFIO Non-Privileged userspace driver framework
   DEPENDS:=@TARGET_x86_64
   KCONFIG:= \
-	CONFIG_VFIO \
-	CONFIG_VFIO_NOIOMMU=n \
+	CONFIG_VFIO=y \
+	CONFIG_VFIO_NOIOMMU=y \
 	CONFIG_VFIO_MDEV=n
   FILES:= \
 	$(LINUX_DIR)/drivers/vfio/vfio.ko \
@@ -101,8 +101,9 @@ define KernelPackage/vfio-pci
   TITLE:=Generic VFIO support for any PCI device
   DEPENDS:=@TARGET_x86_64 @PCI_SUPPORT +kmod-vfio +kmod-irqbypass
   KCONFIG:= \
-	CONFIG_VFIO_PCI \
-	CONFIG_VFIO_PCI_IGD=y
+	CONFIG_VFIO_PCI=y \
+	CONFIG_VFIO_PCI_IGD=y \
+	CONFIG_VFIO_PCI_MMAP=y
   FILES:= \
 	$(LINUX_DIR)/drivers/vfio/pci/vfio-pci-core.ko@ge5.15 \
 	$(LINUX_DIR)/drivers/vfio/pci/vfio-pci.ko
